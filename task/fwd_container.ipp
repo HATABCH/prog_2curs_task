@@ -73,7 +73,6 @@ fwd_container<T>::iterator::operator++(int) {
   return temp;
 }
 
-// const_iterator implementation
 template <typename T>
 fwd_container<T>::const_iterator::const_iterator() : base_ptr_(nullptr) {}
 
@@ -162,7 +161,6 @@ fwd_container<T>::const_iterator::operator++(int) {
   return temp;
 }
 
-// Stream operators
 template <typename T>
 std::ostream &operator<<(std::ostream &os, const fwd_container<T> &container) {
   for (const auto &item : container) {

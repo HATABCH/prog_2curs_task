@@ -1,4 +1,3 @@
-// stack_iterator implementation
 template <typename T>
 stack<T>::stack_iterator::stack_iterator(Node* ptr) : current_(ptr) {}
 
@@ -36,7 +35,6 @@ typename fwd_container<T>::iterator_base* stack<T>::stack_iterator::clone() cons
     return new stack_iterator(current_);
 }
 
-// const_stack_iterator implementation
 template <typename T>
 stack<T>::const_stack_iterator::const_stack_iterator(const Node* ptr) : current_(ptr) {}
 
@@ -74,8 +72,6 @@ typename fwd_container<T>::const_iterator_base* stack<T>::const_stack_iterator::
     return new const_stack_iterator(current_);
 }
 
-
-// stack implementation
 template <typename T>
 stack<T>::stack() : head_(nullptr), size_(0) {}
 

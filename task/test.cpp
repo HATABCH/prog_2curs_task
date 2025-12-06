@@ -5,8 +5,6 @@
 #include <sstream>
 #include <vector>
 
-// --- Stack<int> Tests ---
-
 TEST(StackIntTest, IsEmptyInitially) {
     stack<int> s;
     ASSERT_TRUE(s.is_empty());
@@ -89,8 +87,6 @@ TEST(StackIntTest, StreamOutput) {
     ss << s;
     ASSERT_EQ(ss.str(), "3 2 1 ");
 }
-
-// --- Queue<int> Tests ---
 
 TEST(QueueIntTest, IsEmptyInitially) {
     queue<int> q;
@@ -177,8 +173,6 @@ TEST(QueueIntTest, StreamOutput) {
 }
 
 
-// --- Stack<string> Tests ---
-
 TEST(StackStringTest, IsEmptyInitially) {
     stack<std::string> s;
     ASSERT_TRUE(s.is_empty());
@@ -261,8 +255,6 @@ TEST(StackStringTest, StreamOutput) {
     ss << s;
     ASSERT_EQ(ss.str(), "three two one ");
 }
-
-// --- Queue<string> Tests ---
 
 TEST(QueueStringTest, IsEmptyInitially) {
     queue<std::string> q;

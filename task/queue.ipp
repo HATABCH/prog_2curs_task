@@ -1,4 +1,3 @@
-// queue_iterator implementation
 template <typename T>
 queue<T>::queue_iterator::queue_iterator(Node* ptr) : current_(ptr) {}
 
@@ -36,7 +35,6 @@ typename fwd_container<T>::iterator_base* queue<T>::queue_iterator::clone() cons
     return new queue_iterator(current_);
 }
 
-// const_queue_iterator implementation
 template <typename T>
 queue<T>::const_queue_iterator::const_queue_iterator(const Node* ptr) : current_(ptr) {}
 
@@ -74,8 +72,6 @@ typename fwd_container<T>::const_iterator_base* queue<T>::const_queue_iterator::
     return new const_queue_iterator(current_);
 }
 
-
-// queue implementation
 template <typename T>
 queue<T>::queue() : head_(nullptr), tail_(nullptr), size_(0) {}
 
