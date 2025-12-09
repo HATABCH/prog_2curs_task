@@ -3,26 +3,32 @@ queue<T>::queue_iterator::queue_iterator(Node* ptr) : current_(ptr) {}
 
 template <typename T>
 T& queue<T>::queue_iterator::operator*() {
-    if (!current_) throw std::runtime_error("Dereferencing null iterator");
     return current_->data;
 }
 
 template <typename T>
 T* queue<T>::queue_iterator::operator->() {
-    if (!current_) throw std::runtime_error("Dereferencing null iterator");
     return &current_->data;
 }
 
 template <typename T>
 void queue<T>::queue_iterator::operator++() {
-    if (!current_) throw std::runtime_error("Incrementing null iterator");
     current_ = current_->next.get();
 }
 
 template <typename T>
+const void* queue<T>::queue_iterator::get_type_id() const {
+    static char id;
+    return &id;
+}
+
+template <typename T>
 bool queue<T>::queue_iterator::operator==(const typename fwd_container<T>::iterator_base& other) const {
-    const auto* other_ptr = dynamic_cast<const queue_iterator*>(&other);
-    return other_ptr && current_ == other_ptr->current_;
+    if (get_type_id() != other.get_type_id()) {
+        return false;
+    }
+    const auto& other_ref = static_cast<const queue_iterator&>(other);
+    return current_ == other_ref.current_;
 }
 
 template <typename T>
@@ -39,27 +45,33 @@ template <typename T>
 queue<T>::const_queue_iterator::const_queue_iterator(const Node* ptr) : current_(ptr) {}
 
 template <typename T>
+const void* queue<T>::const_queue_iterator::get_type_id() const {
+    static char id;
+    return &id;
+}
+
+template <typename T>
 const T& queue<T>::const_queue_iterator::operator*() const {
-    if (!current_) throw std::runtime_error("Dereferencing null const_iterator");
     return current_->data;
 }
 
 template <typename T>
 const T* queue<T>::const_queue_iterator::operator->() const {
-    if (!current_) throw std::runtime_error("Dereferencing null const_iterator");
     return &current_->data;
 }
 
 template <typename T>
 void queue<T>::const_queue_iterator::operator++() {
-    if (!current_) throw std::runtime_error("Incrementing null const_iterator");
     current_ = current_->next.get();
 }
 
 template <typename T>
 bool queue<T>::const_queue_iterator::operator==(const typename fwd_container<T>::const_iterator_base& other) const {
-    const auto* other_ptr = dynamic_cast<const const_queue_iterator*>(&other);
-    return other_ptr && current_ == other_ptr->current_;
+    if (get_type_id() != other.get_type_id()) {
+        return false;
+    }
+    const auto& other_ref = static_cast<const const_queue_iterator&>(other);
+    return current_ == other_ref.current_;
 }
 
 template <typename T>

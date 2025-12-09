@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Build artifacts
+test
+*.o
+*.out
+googletest_src/build/
+
+# Editor/Tool directories
+.obsidian/

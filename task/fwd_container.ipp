@@ -44,23 +44,17 @@ fwd_container<T>::iterator::iterator(iterator_base *ptr) : base_ptr_(ptr) {}
 template <typename T>
 typename fwd_container<T>::iterator::reference
 fwd_container<T>::iterator::operator*() const {
-  if (!base_ptr_)
-    throw std::runtime_error("Dereferencing null iterator");
   return base_ptr_->operator*();
 }
 
 template <typename T>
 typename fwd_container<T>::iterator::pointer
 fwd_container<T>::iterator::operator->() const {
-  if (!base_ptr_)
-    throw std::runtime_error("Dereferencing null iterator");
   return base_ptr_->operator->();
 }
 
 template <typename T>
 typename fwd_container<T>::iterator &fwd_container<T>::iterator::operator++() {
-  if (!base_ptr_)
-    throw std::runtime_error("Incrementing null iterator");
   base_ptr_->operator++();
   return *this;
 }
@@ -131,24 +125,18 @@ fwd_container<T>::const_iterator::const_iterator(const_iterator_base *ptr)
 template <typename T>
 typename fwd_container<T>::const_iterator::reference
 fwd_container<T>::const_iterator::operator*() const {
-  if (!base_ptr_)
-    throw std::runtime_error("Dereferencing null const_iterator");
   return base_ptr_->operator*();
 }
 
 template <typename T>
 typename fwd_container<T>::const_iterator::pointer
 fwd_container<T>::const_iterator::operator->() const {
-  if (!base_ptr_)
-    throw std::runtime_error("Dereferencing null const_iterator");
   return base_ptr_->operator->();
 }
 
 template <typename T>
 typename fwd_container<T>::const_iterator &
 fwd_container<T>::const_iterator::operator++() {
-  if (!base_ptr_)
-    throw std::runtime_error("Incrementing null const_iterator");
   base_ptr_->operator++();
   return *this;
 }

@@ -21,6 +21,7 @@ public:
     class iterator_base {
     public:
         virtual ~iterator_base() = default;
+        virtual const void* get_type_id() const = 0;
         virtual T& operator*() = 0;
         virtual T* operator->() = 0;
         virtual void operator++() = 0;
@@ -32,6 +33,7 @@ public:
     class const_iterator_base {
     public:
         virtual ~const_iterator_base() = default;
+        virtual const void* get_type_id() const = 0;
         virtual const T& operator*() const = 0;
         virtual const T* operator->() const = 0;
         virtual void operator++() = 0;
@@ -63,6 +65,7 @@ public:
         iterator operator++(int);
 
         friend bool operator==(const iterator& a, const iterator& b) {
+            if (!a.base_ptr_ || !b.base_ptr_) return !a.base_ptr_ && !b.base_ptr_;
             return a.base_ptr_->operator==(*b.base_ptr_);
         }
         friend bool operator!=(const iterator& a, const iterator& b) {
@@ -70,8 +73,6 @@ public:
         }
 
         friend class const_iterator;
-        friend bool operator==(const iterator& a, const const_iterator& b);
-        friend bool operator!=(const iterator& a, const const_iterator& b);
 
     private:
         iterator_base* base_ptr_;

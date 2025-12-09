@@ -339,4 +339,3 @@ TEST(QueueStringTest, StreamOutput) {
     ss << q;
     ASSERT_EQ(ss.str(), "one two three ");
 }
-

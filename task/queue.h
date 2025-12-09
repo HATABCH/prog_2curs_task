@@ -48,6 +48,7 @@ private:
     class queue_iterator : public fwd_container<T>::iterator_base {
     public:
         explicit queue_iterator(Node* ptr);
+        const void* get_type_id() const override;
         T& operator*() override;
         T* operator->() override;
         void operator++() override;
@@ -61,6 +62,7 @@ private:
     class const_queue_iterator : public fwd_container<T>::const_iterator_base {
     public:
         explicit const_queue_iterator(const Node* ptr);
+        const void* get_type_id() const override;
         const T& operator*() const override;
         const T* operator->() const override;
         void operator++() override;
